@@ -18,7 +18,11 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden;
+            /* >>> CAMBIO CLAVE: Permite scroll en pantallas pequeñas <<< */
+            overflow-y: auto; 
+            /* Para centrar el contenido verticalmente si es más pequeño que la pantalla */
+            padding-top: 20px;
+            padding-bottom: 20px;
         }
 
         .pokedex-frame {
@@ -31,6 +35,8 @@
             position: relative;
             display: flex;
             flex-direction: column;
+            /* Permite que el frame se desborde si el contenido es demasiado alto en el móvil */
+            min-height: 800px; 
             overflow: hidden;
         }
 
@@ -317,10 +323,12 @@
         /* Responsive básico */
         @media (max-width: 800px) {
             .pokedex-frame {
+                /* Se cambia de altura fija a una altura basada en el contenido */
+                height: auto; 
                 width: 95%;
-                height: 95vh;
                 border-radius: 15px;
                 border-width: 10px;
+                /* El frame no tiene overflow:hidden para que el content panel se vea bien */
             }
             .main-screen {
                 grid-template-columns: 1fr; 
@@ -337,6 +345,12 @@
                 right: 15px;
                 width: 60px;
                 height: 60px;
+            }
+
+            /* Se asegura que el panel de información pueda crecer */
+            .stats-info-panel {
+                overflow-y: visible; /* Elimina scroll interno y permite que el contenedor crezca */
+                height: auto;
             }
         }
     </style>
